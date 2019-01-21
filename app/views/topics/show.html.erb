@@ -1,0 +1,38 @@
+<h1>Topics#show</h1>
+<div>
+  <%== @topic.content %>
+  
+  <% if user_signed_in? %>
+    <% if current_user.challenging?(@topic) %>
+      <%= form_for(current_user.progressions.find_by(topic_id: @topic.id), html: { method: :delete }) do |f| %>
+        <%= hidden_field_tag :topic_id, @topic.id %>
+        <%= f.submit 'delete' %>
+      <% end %>
+      
+      <%= form_for(@progression) do |f| %>
+        <%= f.label :memo, 'memo' %>
+        <%= f.text_field :memo %>
+        <%= f.label :evaluation, 'evaluation' %>
+        <%= f.select(:evaluation, [['good', 0], ['medium', 1], ['bad', 2]]) %>
+        <%= f.radio_button(:display, true) %>
+        <%= f.label(:display, "true")  %>
+        <%= f.radio_button(:display, false) %>
+        <%= f.label(:display, "false") %>
+        <%= hidden_field_tag :topic_id, @topic.id %>
+        <%= f.submit 'update' %>
+      <% end %>
+      
+      <%= link_to @topic.title + 'question', questions_path(topic_id: @topic.id) %>
+      
+    <% else %>
+      <%= form_for(current_user.progressions.build) do |f| %>
+        <%= hidden_field_tag :topic_id, @topic.id %>
+        <%= f.submit 'add' %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <%= link_to 'signup', new_user_registration_path %>
+    <%= link_to 'login', new_user_session_path %>
+  <% end %>
+    
+</div>

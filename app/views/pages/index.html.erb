@@ -1,0 +1,12 @@
+<h1>Pages#index</h1>
+<p>Find me in app/views/pages/index.html.erb</p>
+
+  <%= search_form_for @q, url: 'search' do |f| %>
+    <%= f.label :content_cont, 'content' %>
+    <%= f.search_field :content_cont_all %>
+    <%= f.submit %>
+  <% end %>
+  
+  <%= link_to 'grade1', pages_filter_path(item: 'grade1') %>
+  <%= link_to 'grade2', pages_filter_path(item: 'grade2') %>
+  <%= link_to 'grade3', pages_filter_path(item: 'grade3') %>

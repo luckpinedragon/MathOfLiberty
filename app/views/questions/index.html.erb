@@ -1,0 +1,8 @@
+<h1>Questions#index</h1>
+<% @questions.each do |question| %>
+  <li>
+    <div>
+      <%= link_to question.theme, questions_show_path(id: question.id) %>
+    </div>
+  </li>
+<% end %>

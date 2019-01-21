@@ -1,0 +1,18 @@
+<h1>Users#index</h1>
+<p>hello<%= current_user.name %></p>
+<% @players.each do |user| %>
+  <div>
+    <%= user.name %>
+  </div>
+  <div>
+    scoreranking<%= sum_score(user.id) %>
+  </div>
+<% end %>
+<% @challengers.each do |user| %>
+  <div>
+    <%= user.name %>
+  </div>
+  <div>
+    completemarking<%= sum_complete(user.id) %>
+  </div>
+<% end %>

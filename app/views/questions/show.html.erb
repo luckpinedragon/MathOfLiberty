@@ -1,0 +1,40 @@
+<h1>Questions#show</h1>
+<div>
+
+  <% if current_user.following?(@question) %>
+    <%= render inline: @question.problem %>
+  
+      <%= form_for(current_user.results.find_by(question_id: @question.id), html: { method: :delete }) do |f| %>
+        <%= hidden_field_tag :question_id, @question.id %>
+        <%= f.submit 'delete' %>
+      <% end %>
+      
+      <%= form_for(@result) do |f| %>
+        <%= f.label :score, 'score' %>
+        <%= f.number_field :score %>
+        <%= f.radio_button(:visualize, true) %>
+        <%= f.label(:visualize, "true")  %>
+        <%= f.radio_button(:visualize, false) %>
+        <%= f.label(:visualize, "false") %>
+        <%= hidden_field_tag :question_id, @question.id %>
+        <%= f.submit 'update' %>
+      <% end %>
+      
+      <%= form_for(@result) do |f| %>
+        <%= number_field_tag 'response[0][]' %>
+        <%= number_field_tag 'response[1][]' %>
+        <%= number_field_tag 'response[1][]' %>
+        <%= number_field_tag 'response[1][]' %>
+        <%= hidden_field_tag :question_id, @question.id %>
+        <%= submit_tag 'finish' %>
+      <% end %>
+      
+      <%= link_to @question.theme + 'question', questions_path(question_id: @question.id) %>
+      
+    <% else %>
+      <%= form_for(current_user.results.build) do |f| %>
+        <%= hidden_field_tag :question_id, @question.id %>
+        <%= f.submit 'add' %>
+      <% end %>
+    <% end %>
+</div>

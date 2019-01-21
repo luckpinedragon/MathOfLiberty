@@ -1,0 +1,19 @@
+<header>
+  <nav>
+    <div>
+      <div>
+        <%= link_to 'top', root_path %>
+      </div>
+      <div>
+        <%= link_to 'main', pages_show_path %>
+        <% if user_signed_in? %>
+          <strong><%= link_to current_user.name + 'page', user_path(current_user) %></strong>
+          <%= link_to 'logout', destroy_user_session_path, method: :delete %>
+        <% else %>
+          <%= link_to 'signup', new_user_registration_path %>
+          <%= link_to 'login', new_user_session_path %>
+        <% end %>
+      </div>
+    </div>
+  </nav>
+</header>
