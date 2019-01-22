@@ -66,3 +66,7 @@ gem 'sitemap_generator'
 gem 'chart-js-rails'
 gem 'gon'
 gem 'slim-rails'
+
+group :production do
+  gem 'pg', '0.21.0'
+end

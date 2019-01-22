@@ -1,7 +1,7 @@
 <h1>Users#show</h1>
 <p>hello<%= current_user.name %></p>
 <p>sum_score:<%= sum_score(current_user.id) %></p>
-<p>sum_complete:<%= sum_complete(current_user.id, 1) %></p>
+<p>sum_complete:<%= sum_complete(current_user.id) %></p>
 <p>complete:<%= check_complete(current_user.id, 4) %></p>
 <p>level:<%= check_score(current_user.id, 1) %></p>
 <%= link_to 'ranking', users_path %>
@@ -16,7 +16,7 @@
     <%= hidden_field_tag :topic_id, topic.id %>
     <%= f.submit 'delete' %>
   <% end %>
-  
+
 <% end %>
 
 <% @questions.each do |question| %>
@@ -29,5 +29,5 @@
     <%= hidden_field_tag :question_id, question.id %>
     <%= f.submit 'delete' %>
   <% end %>
-  
+
 <% end %>
